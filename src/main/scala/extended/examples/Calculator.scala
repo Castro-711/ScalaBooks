@@ -37,5 +37,16 @@ case object Number {
     * from an Double to an Expression
     */
   implicit def double2Number(value: Double): Number = new Number(value)
+
+  /**
+    * another implicit to convert Ints to Doubles
+    * more practice and easier implementation
+    */
+  implicit def int2Number(value: Int): Number = new Number(value.toDouble)
 }
 
+/**
+  * now implementing some expressions that can fail: Division & SquareRoot
+  */
+final case class Division(num: Expression, den: Expression) extends Expression
+final case class SquareRoot(root: Expression) extends Expression
