@@ -14,11 +14,43 @@ package extended.examples
   */
 
 sealed trait Expression {
-  def eval: Double = {
+  def eval: Calculation = {
     this match {
-      case Addition(l, r) => l.eval + r.eval
-      case Subtraction(l, r) => l.eval - r.eval
-      case Number(v) => v
+
+      case Addition(l, r) => l.eval match {
+        case Failure(reason) => Failure(reason)
+        case Success(l_) => r.eval match {
+          case Failure(reason) => Failure(reason)
+          case Success(r_) => Success(l_ + r_)
+        }
+      }
+
+      case Subtraction(l, r) => l.eval match {
+        case Failure(reason) => Failure(reason)
+        case Success(l_) => r.eval match {
+          case Failure(reason) => Failure(reason)
+          case Success(r_) => Success(l_ - r_)
+        }
+      }
+
+      case Division(n, d) => n.eval match {
+        case Failure(reason) => Failure(reason)
+        case Success(n_) => d.eval match {
+          case Failure(reason) => Failure(reason)
+          case Success(d_) =>
+            if (d_ == 0) Failure("Attempt to divide by 0")
+            else Success(n_ / d_)
+        }
+      }
+
+      case SquareRoot(v) => v.eval match {
+        case Success(v) =>
+          if (v < 0) Failure("Square root of negative number")
+          else Success(Math.sqrt(v))
+        case Failure(reason) => Failure(reason)
+      }
+
+      case Number(v) => Success(v)
     }
   }
 }
@@ -50,3 +82,10 @@ case object Number {
   */
 final case class Division(num: Expression, den: Expression) extends Expression
 final case class SquareRoot(root: Expression) extends Expression
+
+/**
+  * now implementing appropriate algebraic data type to indicate computation failed
+  */
+sealed trait Calculation
+final case class Success(value: Double) extends Calculation
+final case class Failure(error: String) extends Calculation

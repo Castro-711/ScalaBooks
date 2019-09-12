@@ -14,11 +14,27 @@ class CalculatorTest extends FlatSpecLike with Matchers {
 
   // shouldBe should be used for Doubles
   // == checks for type equality
-  it should "return 3 for (1 + (5 - 3))" in {
-    Addition(1.0, Subtraction(5.0, 3.0)).eval shouldBe 3.0
+  it should "return Success(3.0) for (1 + (5 - 3))" in {
+    Addition(1.0, Subtraction(5.0, 3.0)).eval shouldBe Success(3.0)
   }
 
-  it should "return 7 for ((9 + 20) - (13 + 9))" in {
-    Subtraction(Addition(9, 20), Addition(13, 9)).eval shouldBe 7
+  it should "return Success(7)for ((9 + 20) - (13 + 9))" in {
+    Subtraction(Addition(9, 20), Addition(13, 9)).eval shouldBe Success(7)
+  }
+
+  it should "return a Failure when dividing by 0" in {
+    Division(7, 0).eval shouldBe Failure("Attempt to divide by 0")
+  }
+
+  it should "return a Success(3.0) when dividing 9 by 3" in {
+    Division(9, 3).eval shouldBe Success(3)
+  }
+
+  it should "return a Failure when looking for the square root of a negative number" in {
+    SquareRoot(-2).eval shouldBe Failure("Square root of negative number")
+  }
+
+  it should "return Success(4.0) when SquareRoot(16)" in {
+    SquareRoot(16).eval shouldBe Success(4.0)
   }
 }
