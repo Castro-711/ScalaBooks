@@ -79,11 +79,11 @@ println(sum(End))
 /**
   * Understanding the Base Case and Recursive Case
   *
-  * Our patterns will carry us most of the way to a acorrect answer, but we still need to supply
+  * Our patterns will carry us most of the way to a a correct answer, but we still need to supply
   * the method bodies for the base and recursive cases. There is some general guidance we can use
   *
   * * for the base we should generally return the identity for the function
-  *   The identity is an element that doens't change the result, e.g. 0 is the identity
+  *   The identity is an element that doesnt change the result, e.g. 0 is the identity
   *   for addition, because a + 0 == a for any a. If we were calculating the product of elements
   *   the identity would be 1 as a * 1 == a for all a
   *
@@ -96,7 +96,7 @@ println(sum(End))
   * Recursive Algebraic Data Types Pattern
   *
   * When defining recursive algebraic data types, there must be at least two cases: one that is recursive,
-  * and one that is not. Case that are not recursive are known as the base cases. In code the general skeleton is
+  * and one that is not. Cases that are not recursive are known as the base cases. In code the general skeleton is
   */
 
 sealed trait RecursiveExample
@@ -133,7 +133,7 @@ def notATailCall: Int = method1 + 2
 /**
   * A tail call can be optimised to not use stack space. Due to limitations in the JVM, Scala only optimises
   * tail calls where the caller calls itself. Since tail recursion is an important property to maintain, we can
-  * use the @tailrec annotation to aks the compiler to check that methods we believe are tail recursion really are.
+  * use the @tailrec annotation to ask the compiler to check that methods we believe are tail recursion really are.
   * here we have two versions of sum annotated. One is tail recursive and one is not. You can see the compiler
   * complains about the method that is not tail recursive ( the definition above  !!!!!! )
   */

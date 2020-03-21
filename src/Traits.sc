@@ -163,7 +163,7 @@ final case class Rectangle(length: Double, breadth: Double, col: Colour) extends
 // We can model this case with a sealed trait, which allows the compiler to provide extra checks for us.
 
 // when we mark a trait as sealed we must define all of its subtypes in the same file.
-// ONce the trait is sealed, the compiler knows the complete set of subtypes and will warn us if a pattern amtching expression
+// Once the trait is sealed, the compiler knows the complete set of subtypes and will warn us if a pattern matching expression
 // is missing a case
 
 def missingCase(v: Visitor) =
@@ -230,7 +230,7 @@ Divide(2, 1)
 /** The product Type Pattern */
 // our first pattern is to model data that contains other data. We might describe this as "A has a B and C"
 // e.g. a Cat has a colour and a favourite food
-// a Visitor has an ide and a creation date
+// a Visitor has an id and a creation date
 
 // formalizing the Product Type Pattern
 case class B()
@@ -267,7 +267,7 @@ final case class _C() extends __A
 // Has-a    Product Type
 
 // What about the missing two patterns?
-// The "is-a and" pattern means that A is a B and C. This pattern is in some wasy the inverse of the sum type
+// The "is-a and" pattern means that A is a B and C. This pattern is in some ways the inverse of the sum type
 // and can be implemented like so
 
 trait B_
@@ -279,7 +279,7 @@ trait A_ extends B_ with C_
 // if we want to represent that some data conforms to a number of different interfaces we will often be better off
 // using a type class, which we will explore later
 
-// there are however serveral legitimater uses for this pattern:
+// there are however several legitimate uses for this pattern:
 //  * for modularity, using whats known as the cake pattern
 //  * sharing implementation across several classes where it doesn't make sense to make default implementations in the
 // main trait
@@ -341,7 +341,7 @@ final case class BottledWater(size: Int, source: Source, carbonated: Boolean)
 // If A has a B and C (product type) , to construct an A we must have a B and a C
 
 // The sum and product type patterns tell us how to combine data to make bigger data
-// Structural recursion says that if we have an A as defined before, we must break it into it constituent B and C that
+// Structural recursion says that if we have an A as defined before, we must break it into its constituent B and C that
 // we then combine in some way to get closer to our desired answer.
 
 // Structural recursion is essentially the process of breaking down data into smaller pieces !!!
@@ -404,7 +404,7 @@ aZ.foo
 // We've actually seen everything we need but let's make it explicit and see the patterns
 
 /** Product type polymorphism Pattern */
-// if A has a b(with type B) and a c(with type C), and we ant to write a method f returning an F, simply write the
+// if A has a b(with type B) and a c(with type C), and we want to write a method f returning an F, simply write the
 // method in the usual way
 
 case class F()
@@ -432,8 +432,8 @@ final case class C$() extends A$ {
 
 
 /** Structural Recursion using pattern matching */
-// Structural recurssion with pattern matching proceeds along the same lines as polymorphism
-// we simply have a case for very subtype, and each pattern matching case must extract the fields we are
+// Structural recursion with pattern matching proceeds along the same lines as polymorphism
+// we simply have a case for every subtype, and each pattern matching case must extract the fields we are
 // interested in...!
 
 /** Product Type Pattern Matching Pattern */
@@ -480,7 +480,7 @@ final case class _Tiger() extends _Feline
 final case class _Panter() extends _Feline
 final case class _Cat(food: String) extends _Feline
 
-// now lest implement a method using both polymorphism and pattern matching
+// now lets implement a method using both polymorphism and pattern matching
 // our method, dinner, will return the appropriate food for the feline in question
 // For a Cat their dinner is their favouritefood.
 // For Lions it is antelope

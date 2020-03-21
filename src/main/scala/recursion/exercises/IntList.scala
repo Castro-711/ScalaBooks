@@ -28,4 +28,10 @@ sealed trait IntList {
 case object End extends IntList
 final case class Pair(head: Int, tail: IntList) extends IntList
 
+/**
+  * In chapter 5 -> Functions
+  *
+  * We can see all of these methods have the same general pattern, which is not surprising as they all
+  * use structural recursion. It would be nice to be able to remove the duplication
+  */
 

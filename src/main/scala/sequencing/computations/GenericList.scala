@@ -1,5 +1,8 @@
 package sequencing.computations
 
+//TODO: rename packages and organise code better
+//TODO: write concise learning's about each section
+
 /**
   * In this section we are going to use
   *   1. Generics to abstract over data types
@@ -28,7 +31,7 @@ object GenericList extends App {
   // parameter is bound to the concrete type within the method or class body
   // wo when we call
   generic(1)
-  // the type param A is bound to int in the boyd of generic
+  // the type param A is bound to int in the body of generic
 
 }
 
